@@ -6,14 +6,33 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
     h1 { color: #2c3e50; }
-    .section { background: #fff; padding: 20px; margin-bottom: 20px; 
-      border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
     .bigText { font-size: 22px; font-weight: bold; color: #333; }
     .smallText { font-size: 16px; color: #555; margin-top: 5px; }
+
     .hidden { display: none; }
+
     input { padding: 8px; width: 120px; margin-right: 5px; }
     button { padding: 8px; }
     .error { color: red; }
+
+
+    /* FADE-IN ANIMATION */
+    #content {
+      opacity: 0;
+      transition: opacity 0.9s ease-in-out;
+    }
+    #content.visible {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -27,59 +46,50 @@
     <p id="pinMessage" class="error"></p>
   </div>
 
-  <!-- EVERYTHING BELOW IS HIDDEN UNTIL PIN IS CORRECT -->
+  <!-- CONTENT HIDDEN UNTIL PIN CORRECT -->
   <div id="content" class="hidden">
 
     <!-- ================== SECTION 1 ================== -->
     <div class="section">
-
       <!-- SECTION 1 BIG TEXT -->
-      <div class="bigText">
-        Section 1 Big Text (SS ROME SENATE)
-      </div>
+      <div class="bigText">Section 1 Big Text (EDIT THIS)</div>
 
       <!-- SECTION 1 SMALL TEXT -->
-      <div class="smallText">
-        Section 1 Small Text (A, B, C, D)
-      </div>
-
+      <div class="smallText">Section 1 Small Text (EDIT THIS)</div>
     </div>
 
     <!-- ================== SECTION 2 ================== -->
     <div class="section">
-
       <!-- SECTION 2 BIG TEXT -->
-      <div class="bigText">
-        Section 2 Big Text (MATH HW 5-4 12-30)
-      </div>
+      <div class="bigText">Section 2 Big Text (EDIT THIS)</div>
 
       <!-- SECTION 2 SMALL TEXT -->
-      <div class="smallText">
-        Section 2 Small Text (2- Wabi Sabi)
-      </div>
-
+      <div class="smallText">Section 2 Small Text (EDIT THIS)</div>
     </div>
 
     <!-- ================== SECTION 3 ================== -->
     <div class="section">
-
       <!-- SECTION 3 BIG TEXT -->
-      <div class="bigText">
-        Section 3 Big Text (ENG HW)
-      </div>
+      <div class="bigText">Section 3 Big Text (EDIT THIS)</div>
 
       <!-- SECTION 3 SMALL TEXT -->
-      <div class="smallText">
-        Section 3 Small Text (2- tung tung sahur)
-      </div>
+      <div class="smallText">Section 3 Small Text (EDIT THIS)</div>
+    </div>
 
+    <!-- ================== SECTION 4 (NEW) ================== -->
+    <div class="section">
+      <!-- SECTION 4 BIG TEXT -->
+      <div class="bigText">Section 4 Big Text (EDIT THIS)</div>
+
+      <!-- SECTION 4 SMALL TEXT -->
+      <div class="smallText">Section 4 Small Text (EDIT THIS)</div>
     </div>
 
   </div>
 
   <script>
-    // ---------- CHANGE YOUR PIN HERE ----------
-    const correctPin = "6741";
+    // ---------- CHANGE PIN HERE ----------
+    const correctPin = "6767";
 
     function checkPin() {
       const input = document.getElementById("pinInput").value;
@@ -87,7 +97,14 @@
       const content = document.getElementById("content");
 
       if (input === correctPin) {
+        // show content + animate fade-in
         content.classList.remove("hidden");
+
+        // next frame → fade to visible
+        setTimeout(() => {
+          content.classList.add("visible");
+        }, 20);
+
         document.getElementById("pinSection").classList.add("hidden");
       } else {
         message.textContent = "Wrong PIN, try again!";
